@@ -1,97 +1,505 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
+.containerWide {
+  width: min(1200px, calc(100% - 2rem));
+  margin: 0 auto;
+}
 
 .heroBanner {
-  padding: 6rem 0 5rem;
-  text-align: left;
   position: relative;
   overflow: hidden;
+  padding: 5.5rem 0 5rem;
   background:
-    radial-gradient(circle at top left, rgba(217, 119, 6, 0.18), transparent 22%),
-    radial-gradient(circle at 100% 0%, rgba(37, 99, 235, 0.16), transparent 30%),
+    radial-gradient(circle at top left, rgba(217, 119, 6, 0.18), transparent 20%),
+    radial-gradient(circle at 90% 10%, rgba(37, 99, 235, 0.16), transparent 28%),
     linear-gradient(180deg, #eef2e8 0%, #f9f8f2 100%);
-  color: #14211a;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.section {
-  padding: 4rem 0;
-}
-
-.sectionAlt {
-  padding: 4rem 0;
-  background: #f7f9f3;
-}
-
-.grid {
+.heroLayout,
+.productHeroLayout {
   display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(420px, 0.95fr);
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.heroCopy,
+.productHeroCopy {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow,
+.sectionEyebrow,
+.sectionEyebrowDark,
+.metaLabel,
+.previewMono,
+.capabilityTag {
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.eyebrow,
+.sectionEyebrow,
+.capabilityTag,
+.metaLabel,
+.previewMono {
+  color: #58645a;
+  font-size: 0.76rem;
+}
+
+.sectionEyebrowDark {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.76rem;
+}
+
+.heroTitle,
+.productTitle {
+  margin: 0.75rem 0 0;
+  font-size: clamp(3rem, 5vw, 5.2rem);
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+}
+
+.heroLead,
+.productLead,
+.sectionLead,
+.sectionLeadDark,
+.lead {
+  max-width: 60ch;
+  margin-top: 1.25rem;
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: #465246;
+}
+
+.sectionLeadDark {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.heroActions,
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.75rem;
+}
+
+.heroMeta,
+.specGrid,
+.grid,
+.capabilityGrid,
+.audienceGrid,
+.stackGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.heroMeta {
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
   margin-top: 2rem;
 }
 
-.card {
-  padding: 1.5rem;
-  border-radius: 24px;
+.metaCard,
+.card,
+.valueCard,
+.capabilityCard,
+.specCard,
+.infoCard,
+.productFrameCard,
+.ctaCardLight {
   border: 1px solid rgba(20, 33, 26, 0.08);
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 18px 40px rgba(17, 24, 39, 0.06);
-}
-
-.featureRow {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 2rem;
-  align-items: start;
-}
-
-.ctaCard {
-  padding: 1.5rem;
   border-radius: 24px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 18px 42px rgba(17, 24, 39, 0.06);
+}
+
+.metaCard,
+.specCard,
+.infoCard {
+  padding: 1rem 1.1rem;
+}
+
+.metaCard strong,
+.specCard strong {
+  display: block;
+  margin-top: 0.4rem;
+}
+
+.heroVisual {
+  position: relative;
+}
+
+.browserShell {
+  border-radius: 32px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(20, 33, 26, 0.08);
+  box-shadow: 0 36px 80px rgba(17, 24, 39, 0.12);
+}
+
+.browserBar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem 1rem 0;
+}
+
+.browserBar span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(20, 33, 26, 0.14);
+}
+
+.previewShell {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  min-height: 560px;
+}
+
+.previewSidebar {
+  display: grid;
+  align-content: start;
+  gap: 1.25rem;
+  padding: 1.2rem;
+  background: rgba(17, 24, 39, 0.96);
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.previewBrand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.previewBrandMark {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f0b44c, #1c7c54);
+  color: #101828;
+  font-weight: 800;
+}
+
+.previewNav {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.previewNavItem {
+  padding: 0.85rem 0.95rem;
+  border-radius: 14px;
+  color: rgba(255, 255, 255, 0.72);
+  border: 1px solid transparent;
+}
+
+.previewNavItemActive {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.previewContent {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  padding: 1.3rem;
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent 25%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(249, 248, 242, 0.98));
+}
+
+.previewTopbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.previewPills {
+  display: flex;
+  gap: 0.55rem;
+}
+
+.previewPills span,
+.previewBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(28, 124, 84, 0.14);
+  color: #1c7c54;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.previewStats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.previewStatCard,
+.previewPanel,
+.previewPanelLarge {
+  border-radius: 20px;
+  border: 1px solid rgba(20, 33, 26, 0.08);
+  background: rgba(255, 255, 255, 0.78);
+  padding: 1rem;
+}
+
+.previewStatCard strong {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 1.35rem;
+}
+
+.previewGrid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 0.9rem;
+}
+
+.previewPanelLarge {
+  display: grid;
+  gap: 1rem;
+  grid-row: span 2;
+}
+
+.previewPanelHeader {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.previewBars {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: end;
+  gap: 0.65rem;
+  min-height: 180px;
+}
+
+.previewBars span {
+  display: block;
+  width: 100%;
+  border-radius: 999px 999px 12px 12px;
+  background: linear-gradient(180deg, #2563eb, #1c7c54);
+}
+
+.previewSwatches {
+  display: flex;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.previewSwatches span {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+}
+
+.previewSwatches span:nth-child(1) {
+  background: #1c7c54;
+}
+
+.previewSwatches span:nth-child(2) {
+  background: #d97706;
+}
+
+.previewSwatches span:nth-child(3) {
+  background: #2563eb;
+}
+
+.previewList {
+  margin: 1rem 0 0;
+  padding-left: 1rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.section,
+.sectionAlt,
+.sectionDark,
+.productHero {
+  position: relative;
+  padding: 5rem 0;
+}
+
+.sectionAlt {
+  background: #f3f6ef;
+}
+
+.sectionDark {
   background: #111827;
   color: white;
 }
 
-.stack {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 1rem;
+.sectionHeading {
+  max-width: 720px;
+  margin-bottom: 2rem;
+}
+
+.grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card,
+.valueCard,
+.capabilityCard {
+  padding: 1.4rem;
+}
+
+.audienceGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.capabilityGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.capabilityCard {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.capabilityTag {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(20, 33, 26, 0.06);
+}
+
+.inlineLink {
+  color: #1c7c54;
+  font-weight: 700;
+}
+
+.featureRow,
+.stackLayout {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 2rem;
+  align-items: start;
 }
 
 .list {
   display: grid;
-  gap: 0.75rem;
-  padding-left: 1.25rem;
+  gap: 0.65rem;
+  padding-left: 1.2rem;
+  margin: 1rem 0 0;
 }
 
-.lead {
-  max-width: 56rem;
-  font-size: 1.125rem;
-  line-height: 1.7;
+.specGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ctaStrip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.productHero {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(217, 119, 6, 0.14), transparent 16%),
+    radial-gradient(circle at 90% 10%, rgba(37, 99, 235, 0.12), transparent 24%),
+    linear-gradient(180deg, #eff3ea 0%, #f7f9f3 100%);
+}
+
+.productHeroGradient {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.48), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(28, 124, 84, 0.08), transparent 24%);
+  pointer-events: none;
+}
+
+.productFrame {
+  display: grid;
+  gap: 1rem;
+}
+
+.productFrameCard {
+  padding: 1.25rem;
+}
+
+.productFrameCard strong {
+  display: block;
+  margin: 0.45rem 0 0.75rem;
+}
+
+.ctaCardLight {
+  padding: 1.5rem;
+}
+
+.stackGrid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 .pageMain {
   padding-bottom: 4rem;
 }
 
-@media screen and (max-width: 996px) {
+@media screen and (max-width: 1100px) {
+  .heroLayout,
+  .productHeroLayout,
+  .featureRow,
+  .stackLayout,
+  .ctaStrip {
+    grid-template-columns: 1fr;
+  }
+
+  .heroMeta,
+  .previewStats,
+  .previewGrid,
   .grid,
-  .featureRow {
+  .capabilityGrid,
+  .specGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner,
+  .productHero,
+  .section,
+  .sectionAlt,
+  .sectionDark {
+    padding: 3.5rem 0;
+  }
+
+  .heroTitle,
+  .productTitle {
+    font-size: clamp(2.4rem, 9vw, 3.4rem);
+  }
+
+  .heroLead,
+  .productLead,
+  .sectionLead,
+  .sectionLeadDark {
+    font-size: 1rem;
+  }
+
+  .previewShell {
+    grid-template-columns: 1fr;
+  }
+
+  .previewSidebar {
+    display: none;
+  }
+
+  .audienceGrid {
     grid-template-columns: 1fr;
   }
 }
