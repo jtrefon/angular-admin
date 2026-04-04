@@ -1,10 +1,10 @@
 import { Component, input } from '@angular/core';
 
 @Component({
-  selector: 'app-ds-showcase-panel',
-  templateUrl: './ds-showcase-panel.component.html'
+  selector: 'ui-panel',
+  templateUrl: './panel.component.html',
 })
-export class DsShowcasePanelComponent {
+export class PanelComponent {
   readonly eyebrow = input('');
   readonly title = input.required<string>();
   readonly description = input('');

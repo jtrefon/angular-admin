@@ -13,12 +13,12 @@ export const serverRoutes: ServerRoute[] = [
         { section: 'charts' },
         { section: 'data' },
         { section: 'feedback' },
-        { section: 'patterns' }
+        { section: 'patterns' },
       ];
-    }
+    },
   },
   {
     path: '**',
-    renderMode: RenderMode.Prerender
-  }
+    renderMode: RenderMode.Prerender,
+  },
 ];

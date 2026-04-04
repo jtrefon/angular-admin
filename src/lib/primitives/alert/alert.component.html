@@ -1,0 +1,8 @@
+<div
+  class="ui-alert"
+  [class.ui-alert--info]="tone() === 'info'"
+  [class.ui-alert--success]="tone() === 'success'"
+  [class.ui-alert--warning]="tone() === 'warning'"
+>
+  <ng-content />
+</div>

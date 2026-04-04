@@ -1,0 +1,4 @@
+<label class="ui-check" [class.ui-check--radio]="type() === 'radio'">
+  <input [type]="type()" [checked]="checked()" [name]="name() || null" />
+  <span><ng-content /></span>
+</label>

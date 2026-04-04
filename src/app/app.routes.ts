@@ -5,16 +5,16 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'design-system/overview'
+    redirectTo: 'design-system/overview',
   },
   {
     path: 'design-system',
     pathMatch: 'full',
-    redirectTo: 'design-system/overview'
+    redirectTo: 'design-system/overview',
   },
   {
     path: 'design-system/:section',
     component: DesignSystemPageComponent,
-    title: 'Design System'
-  }
+    title: 'Design System',
+  },
 ];

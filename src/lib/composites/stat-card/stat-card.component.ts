@@ -1,10 +1,10 @@
 import { Component, input } from '@angular/core';
 
 @Component({
-  selector: 'app-ds-stat-card',
-  templateUrl: './ds-stat-card.component.html'
+  selector: 'ui-stat-card',
+  templateUrl: './stat-card.component.html',
 })
-export class DsStatCardComponent {
+export class StatCardComponent {
   readonly label = input.required<string>();
   readonly value = input.required<string>();
   readonly delta = input.required<string>();

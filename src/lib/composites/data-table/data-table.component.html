@@ -1,0 +1,112 @@
+<div class="smart-table">
+  @if (search()) {
+    <div class="smart-table__toolbar">
+      <div class="smart-table__search">
+        <label class="ui-label" for="table-search">{{ search()!.label }}</label>
+        <input
+          id="table-search"
+          class="ui-input"
+          type="text"
+          [value]="query()"
+          (input)="updateSearch($any($event.target).value)"
+          [placeholder]="search()!.placeholder"
+        />
+
+        @if (suggestions().length) {
+          <div class="typeahead-menu">
+            @for (suggestion of suggestions(); track suggestion) {
+              <button
+                type="button"
+                class="typeahead-menu__item"
+                (click)="applySuggestion(suggestion)"
+              >
+                {{ suggestion }}
+              </button>
+            }
+          </div>
+        }
+      </div>
+
+      @if (filters().length) {
+        <div class="smart-table__filters">
+          @for (filter of filters(); track filter.id) {
+            <label class="ui-field">
+              <span class="ui-label">{{ filter.label }}</span>
+              <select
+                class="ui-input"
+                (change)="updateFilter(filter.id, $any($event.target).value)"
+              >
+                <option
+                  [value]="filter.allLabel"
+                  [selected]="filterValue(filter) === filter.allLabel"
+                >
+                  {{ filter.allLabel }}
+                </option>
+                @for (option of filter.options; track option.value) {
+                  <option [value]="option.value" [selected]="option.value === filterValue(filter)">
+                    {{ option.label }}
+                  </option>
+                }
+              </select>
+            </label>
+          }
+        </div>
+      }
+    </div>
+  }
+
+  <div class="table-shell">
+    <table class="ui-table ui-table--smart">
+      <thead>
+        <tr>
+          @for (column of columns(); track column.id) {
+            <th>
+              @if (column.sortable) {
+                <button type="button" class="sort-button" (click)="sortBy(column)">
+                  {{ column.header }}
+                </button>
+              } @else {
+                <span class="sort-button sort-button--static">{{ column.header }}</span>
+              }
+            </th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of pageRows(); track trackBy()($index, row)) {
+          <tr (click)="onRowClick(row)">
+            @for (column of columns(); track column.id) {
+              <td>
+                @if (column.kind === 'badge') {
+                  <ui-badge [tone]="column.badgeTone ? column.badgeTone(row) : 'info'">{{
+                    getDisplayValue(column, row)
+                  }}</ui-badge>
+                } @else {
+                  {{ getDisplayValue(column, row) }}
+                }
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="smart-table__footer">
+    <p class="smart-table__meta">
+      Showing {{ pageRows().length }} of {{ sortedRows().length }} results
+    </p>
+    <div class="pagination">
+      <ui-button variant="ghost" [disabled]="currentPage() === 1" (click)="prevPage()"
+        >Previous</ui-button
+      >
+      <span class="pagination__page">Page {{ currentPage() }} / {{ totalPages() }}</span>
+      <ui-button
+        variant="secondary"
+        [disabled]="currentPage() === totalPages()"
+        (click)="nextPage()"
+        >Next</ui-button
+      >
+    </div>
+  </div>
+</div>

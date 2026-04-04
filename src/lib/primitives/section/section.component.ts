@@ -1,10 +1,10 @@
 import { Component, input } from '@angular/core';
 
 @Component({
-  selector: 'app-ds-section',
-  templateUrl: './ds-section.component.html'
+  selector: 'ui-section',
+  templateUrl: './section.component.html',
 })
-export class DsSectionComponent {
+export class SectionComponent {
   readonly id = input('');
   readonly eyebrow = input('');
   readonly title = input.required<string>();

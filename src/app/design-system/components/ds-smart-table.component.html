@@ -1,85 +1,9 @@
-<div class="smart-table">
-  <div class="smart-table__toolbar">
-    <div class="smart-table__search">
-      <label class="ui-label" for="table-search">Search team or owner</label>
-      <input
-        id="table-search"
-        class="ui-input"
-        type="text"
-        [value]="searchTerm()"
-        (input)="updateSearch(($any($event.target)).value)"
-        placeholder="Type to search"
-      />
-
-      @if (suggestions().length) {
-        <div class="typeahead-menu">
-          @for (suggestion of suggestions(); track suggestion) {
-            <button type="button" class="typeahead-menu__item" (click)="applySuggestion(suggestion)">
-              {{ suggestion }}
-            </button>
-          }
-        </div>
-      }
-    </div>
-
-    <div class="smart-table__filters">
-      <label class="ui-field">
-        <span class="ui-label">Status</span>
-        <select class="ui-input" (change)="updateStatus(($any($event.target)).value)">
-          @for (status of statuses; track status) {
-            <option [selected]="status === selectedStatus()">{{ status }}</option>
-          }
-        </select>
-      </label>
-
-      <label class="ui-field">
-        <span class="ui-label">Region</span>
-        <select class="ui-input" (change)="updateRegion(($any($event.target)).value)">
-          @for (region of regions; track region) {
-            <option [selected]="region === selectedRegion()">{{ region }}</option>
-          }
-        </select>
-      </label>
-    </div>
-  </div>
-
-  <div class="table-shell">
-    <table class="ui-table ui-table--smart">
-      <thead>
-        <tr>
-          <th><button type="button" class="sort-button" (click)="sortBy('team')">Team</button></th>
-          <th><button type="button" class="sort-button" (click)="sortBy('owner')">Owner</button></th>
-          <th><button type="button" class="sort-button" (click)="sortBy('status')">Status</button></th>
-          <th><button type="button" class="sort-button" (click)="sortBy('region')">Region</button></th>
-          <th><button type="button" class="sort-button" (click)="sortBy('slaMinutes')">SLA</button></th>
-          <th><button type="button" class="sort-button" (click)="sortBy('coverage')">Coverage</button></th>
-          <th><button type="button" class="sort-button" (click)="sortBy('volume')">Volume</button></th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (row of paginatedRows(); track row.team) {
-          <tr>
-            <td>{{ row.team }}</td>
-            <td>{{ row.owner }}</td>
-            <td><span class="ui-badge">{{ row.status }}</span></td>
-            <td>{{ row.region }}</td>
-            <td>{{ formatSla(row.slaMinutes) }}</td>
-            <td>{{ row.coverage }}%</td>
-            <td>{{ row.volume }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </div>
-
-  <div class="smart-table__footer">
-    <p class="smart-table__meta">
-      Showing {{ paginatedRows().length }} of {{ sortedRows().length }} results
-    </p>
-    <div class="pagination">
-      <button type="button" class="ui-button ui-button--ghost" (click)="prevPage()" [disabled]="currentPage() === 1">Previous</button>
-      <span class="pagination__page">Page {{ currentPage() }} / {{ totalPages() }}</span>
-      <button type="button" class="ui-button ui-button--secondary" (click)="nextPage()" [disabled]="currentPage() === totalPages()">Next</button>
-    </div>
-  </div>
-</div>
+<ui-data-table
+  [rows]="rows"
+  [columns]="columns"
+  [filters]="filters"
+  [search]="search"
+  [pageSize]="4"
+  initialSortColumnId="coverage"
+  initialSortDirection="desc"
+/>

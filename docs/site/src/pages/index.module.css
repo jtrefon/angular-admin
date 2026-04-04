@@ -1,0 +1,97 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 6rem 0 5rem;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(217, 119, 6, 0.18), transparent 22%),
+    radial-gradient(circle at 100% 0%, rgba(37, 99, 235, 0.16), transparent 30%),
+    linear-gradient(180deg, #eef2e8 0%, #f9f8f2 100%);
+  color: #14211a;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.sectionAlt {
+  padding: 4rem 0;
+  background: #f7f9f3;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.card {
+  padding: 1.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(20, 33, 26, 0.08);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 18px 40px rgba(17, 24, 39, 0.06);
+}
+
+.featureRow {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.ctaCard {
+  padding: 1.5rem;
+  border-radius: 24px;
+  background: #111827;
+  color: white;
+}
+
+.stack {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.list {
+  display: grid;
+  gap: 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.lead {
+  max-width: 56rem;
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.pageMain {
+  padding-bottom: 4rem;
+}
+
+@media screen and (max-width: 996px) {
+  .grid,
+  .featureRow {
+    grid-template-columns: 1fr;
+  }
+}

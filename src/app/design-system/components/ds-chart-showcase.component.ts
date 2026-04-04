@@ -1,20 +1,18 @@
 import { Component, input } from '@angular/core';
-
-type SeriesPoint = {
-  label: string;
-  value: number;
-};
+import {
+  ChartCardComponent,
+  type ChartCardMetric,
+  type ChartSeriesPoint,
+} from '../../../lib/public-api';
 
 @Component({
   selector: 'app-ds-chart-showcase',
-  templateUrl: './ds-chart-showcase.component.html'
+  imports: [ChartCardComponent],
+  templateUrl: './ds-chart-showcase.component.html',
 })
 export class DsChartShowcaseComponent {
-  readonly series = input.required<SeriesPoint[]>();
+  readonly series = input.required<ChartSeriesPoint[]>();
   readonly total = input.required<string>();
   readonly label = input.required<string>();
-
-  protected barHeight(value: number): number {
-    return Math.max(18, Math.min(100, value));
-  }
+  readonly metric = input<ChartCardMetric>({ value: '84%', progress: 84 });
 }
