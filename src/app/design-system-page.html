@@ -1,0 +1,377 @@
+<div class="page-frame">
+  <section class="page-intro">
+    <div class="page-intro__copy">
+      <p class="eyebrow">{{ sectionIntro().eyebrow }}</p>
+      <h1 class="page-title">{{ sectionIntro().title }}</h1>
+      <p class="page-description">{{ sectionIntro().description }}</p>
+    </div>
+
+    <div class="page-intro__actions">
+      <div class="hero-actions">
+        <button type="button" class="ui-button ui-button--primary">Create workspace</button>
+        <button type="button" class="ui-button ui-button--secondary">Open guidelines</button>
+      </div>
+
+      <div class="chip-row">
+        @for (chip of heroChips; track chip) {
+          <span class="ui-chip">{{ chip }}</span>
+        }
+      </div>
+    </div>
+  </section>
+
+  @switch (currentSection()) {
+    @case ('overview') {
+      <div class="stat-grid">
+        @for (stat of statCards; track stat.label) {
+          <app-ds-stat-card [label]="stat.label" [value]="stat.value" [delta]="stat.delta" [tone]="stat.tone" />
+        }
+      </div>
+
+      <div class="showcase-grid showcase-grid--3">
+        <app-ds-showcase-panel eyebrow="Categories" title="Navigate the system">
+          <div class="catalog-menu">
+            @for (item of sectionMenu; track item.id) {
+              <a class="catalog-menu__item" [routerLink]="['/design-system', item.id]">
+                <span>{{ item.label }}</span>
+                <span class="catalog-menu__chevron">→</span>
+              </a>
+            }
+          </div>
+        </app-ds-showcase-panel>
+
+        <app-ds-showcase-panel eyebrow="Analytics" title="Request volume">
+          <app-ds-chart-showcase [series]="chartSeries" total="18.4K" label="Weekly requests" />
+        </app-ds-showcase-panel>
+
+        <app-ds-showcase-panel eyebrow="Activity" title="Recent decisions">
+          <app-ds-activity-feed [items]="activity" />
+        </app-ds-showcase-panel>
+      </div>
+
+      <app-ds-showcase-panel eyebrow="Records" title="Interactive smart table">
+        <app-ds-smart-table />
+      </app-ds-showcase-panel>
+    }
+
+    @case ('foundations') {
+      <div class="showcase-grid showcase-grid--3">
+        <app-ds-showcase-panel eyebrow="Typography" title="Readable hierarchy for dense product surfaces">
+          <div class="type-specimen">
+            <h2 class="display-xl">Display XL</h2>
+            <h3 class="display-lg">Display LG</h3>
+            <h4 class="heading-md">Heading MD</h4>
+            <p class="body-lg">Body large supports onboarding, dashboards, and descriptive summaries without losing rhythm.</p>
+            <p class="body-md">Body medium is the operational default for data-rich admin experiences.</p>
+            <p class="meta-text">IBM Plex Mono for labels, tokens, and instrumentation</p>
+          </div>
+        </app-ds-showcase-panel>
+
+        <app-ds-showcase-panel eyebrow="Palette" title="Semantic color roles">
+          <div class="swatch-grid">
+            @for (swatch of swatches; track swatch.variable) {
+              <app-ds-swatch-card [name]="swatch.name" [variable]="swatch.variable" [hex]="swatch.hex" />
+            }
+          </div>
+        </app-ds-showcase-panel>
+
+        <app-ds-showcase-panel eyebrow="Scale" title="Spacing, radius, and elevation">
+          <div class="token-columns">
+            <div class="token-list">
+              <p class="ui-label">Spacing</p>
+              @for (space of spacingScale; track space) {
+                <div class="token-row">
+                  <span>{{ space }}px</span>
+                  <span class="token-row__bar" [style.width.px]="+space"></span>
+                </div>
+              }
+            </div>
+
+            <div class="token-list">
+              <p class="ui-label">Radius</p>
+              @for (radius of radii; track radius) {
+                <div class="token-row">
+                  <span>{{ radius }}px</span>
+                  <span class="token-row__radius" [style.borderRadius.px]="radius === '999' ? 999 : +radius"></span>
+                </div>
+              }
+            </div>
+          </div>
+        </app-ds-showcase-panel>
+      </div>
+    }
+
+    @case ('navigation') {
+      <div class="showcase-grid showcase-grid--2">
+        <app-ds-showcase-panel eyebrow="Navigation" title="Sidebar, filter rail, and contextual actions">
+          <div class="nav-preview">
+            <div class="nav-preview__sidebar">
+              @for (item of navItems; track item; let idx = $index) {
+                <div class="nav-preview__item" [class.is-active]="idx === 0">{{ item }}</div>
+              }
+            </div>
+            <div class="nav-preview__content">
+              <div class="filter-bar">
+                <span class="ui-chip">All states</span>
+                <span class="ui-chip">Assigned to me</span>
+                <span class="ui-chip">Last 30 days</span>
+              </div>
+              <div class="inline-actions">
+                <button type="button" class="ui-button ui-button--ghost">Export</button>
+                <button type="button" class="ui-button ui-button--secondary">Add filter</button>
+              </div>
+            </div>
+          </div>
+        </app-ds-showcase-panel>
+
+        <app-ds-showcase-panel eyebrow="Category menu" title="Route-backed section browsing">
+          <div class="catalog-menu">
+            @for (item of sectionMenu; track item.id) {
+              <a class="catalog-menu__item" [routerLink]="['/design-system', item.id]">
+                <span>{{ item.label }}</span>
+                <span class="catalog-menu__chevron">→</span>
+              </a>
+            }
+          </div>
+        </app-ds-showcase-panel>
+      </div>
+
+      <app-ds-showcase-panel eyebrow="Actions" title="Buttons, chips, tabs, and badges">
+        <div class="control-cluster">
+          <div class="button-row">
+            <button type="button" class="ui-button ui-button--primary">Primary action</button>
+            <button type="button" class="ui-button ui-button--secondary">Secondary</button>
+            <button type="button" class="ui-button ui-button--ghost">Ghost</button>
+          </div>
+          <div class="chip-row">
+            <span class="ui-chip">Default chip</span>
+            <span class="ui-badge ui-badge--success">Success</span>
+            <span class="ui-badge ui-badge--warning">Warning</span>
+            <span class="ui-badge ui-badge--info">Info</span>
+          </div>
+          <div class="tab-row">
+            <button type="button" class="ui-tab ui-tab--active">Overview</button>
+            <button type="button" class="ui-tab">Permissions</button>
+            <button type="button" class="ui-tab">Automation</button>
+            <button type="button" class="ui-tab">Audit</button>
+          </div>
+        </div>
+      </app-ds-showcase-panel>
+    }
+
+    @case ('forms') {
+      <div class="showcase-grid showcase-grid--2">
+        <app-ds-showcase-panel eyebrow="Form system" title="Advanced workspace configuration">
+          <app-ds-form-showcase />
+        </app-ds-showcase-panel>
+
+        <app-ds-showcase-panel eyebrow="Review panel" title="Summary, validation, and submission states">
+          <div class="summary-list">
+            <div class="summary-list__item">
+              <span class="summary-list__label">Workspace tier</span>
+              <strong>Enterprise</strong>
+            </div>
+            <div class="summary-list__item">
+              <span class="summary-list__label">Approval chain</span>
+              <strong>Manager → Risk → Finance</strong>
+            </div>
+            <div class="summary-list__item">
+              <span class="summary-list__label">Retention policy</span>
+              <strong>7 years</strong>
+            </div>
+          </div>
+
+          <div class="stack-sm">
+            <div class="ui-alert ui-alert--info">
+              <strong>Preflight:</strong> 2 required fields still need confirmation before publish.
+            </div>
+            <div class="ui-alert ui-alert--success">
+              <strong>Validation:</strong> RBAC and export restrictions are configured correctly.
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button type="button" class="ui-button ui-button--ghost">Save draft</button>
+            <button type="button" class="ui-button ui-button--secondary">Request review</button>
+            <button type="button" class="ui-button ui-button--primary">Publish config</button>
+          </div>
+        </app-ds-showcase-panel>
+      </div>
+    }
+
+    @case ('charts') {
+      <div class="showcase-grid showcase-grid--3">
+        <app-ds-showcase-panel eyebrow="Analytics" title="Request volume">
+          <app-ds-chart-showcase [series]="chartSeries" total="18.4K" label="Weekly requests" />
+        </app-ds-showcase-panel>
+
+        <app-ds-showcase-panel eyebrow="Distribution" title="Queue health">
+          <div class="donut-metric">
+            <div class="donut-metric__ring">
+              <div class="donut-metric__inner">92%</div>
+            </div>
+            <div class="summary-list">
+              <div class="summary-list__item"><span class="summary-list__label">Healthy</span><strong>64</strong></div>
+              <div class="summary-list__item"><span class="summary-list__label">At risk</span><strong>11</strong></div>
+              <div class="summary-list__item"><span class="summary-list__label">Escalated</span><strong>3</strong></div>
+            </div>
+          </div>
+        </app-ds-showcase-panel>
+
+        <app-ds-showcase-panel eyebrow="Trend" title="SLA compliance">
+          <div class="spark-card">
+            <div class="spark-card__headline">
+              <p class="metric-value">97.8%</p>
+              <span class="ui-badge ui-badge--success">+1.2%</span>
+            </div>
+            <div class="sparkline">
+              <span class="sparkline__point" style="height: 32%"></span>
+              <span class="sparkline__point" style="height: 44%"></span>
+              <span class="sparkline__point" style="height: 40%"></span>
+              <span class="sparkline__point" style="height: 56%"></span>
+              <span class="sparkline__point" style="height: 72%"></span>
+              <span class="sparkline__point" style="height: 65%"></span>
+              <span class="sparkline__point" style="height: 78%"></span>
+            </div>
+          </div>
+        </app-ds-showcase-panel>
+      </div>
+    }
+
+    @case ('data') {
+      <app-ds-showcase-panel eyebrow="Data display" title="Operational records smart table">
+        <app-ds-smart-table />
+      </app-ds-showcase-panel>
+
+      <div class="showcase-grid showcase-grid--2">
+        <app-ds-showcase-panel eyebrow="Selection" title="Bulk action widget">
+          <div class="summary-list">
+            <div class="summary-list__item"><span class="summary-list__label">Selected rows</span><strong>18</strong></div>
+            <div class="summary-list__item"><span class="summary-list__label">Pending approval</span><strong>6</strong></div>
+            <div class="summary-list__item"><span class="summary-list__label">Escalated</span><strong>2</strong></div>
+          </div>
+          <div class="button-row">
+            <button type="button" class="ui-button ui-button--ghost">Export CSV</button>
+            <button type="button" class="ui-button ui-button--secondary">Assign owner</button>
+            <button type="button" class="ui-button ui-button--primary">Bulk approve</button>
+          </div>
+        </app-ds-showcase-panel>
+
+        <app-ds-showcase-panel eyebrow="Inspection" title="Row detail preview">
+          <div class="task-panel">
+            <p class="task-panel__title">Support queue</p>
+            <ul class="task-list">
+              <li>Owner: Mina Patel</li>
+              <li>Status: At risk</li>
+              <li>Region: Americas</li>
+              <li>Coverage: 94.6%</li>
+            </ul>
+          </div>
+        </app-ds-showcase-panel>
+      </div>
+    }
+
+    @case ('feedback') {
+      <div class="showcase-grid showcase-grid--2">
+        <app-ds-showcase-panel eyebrow="Feedback" title="Alerts, progress, avatars, and status states">
+          <div class="stack-sm">
+            <div class="ui-alert ui-alert--info">
+              <strong>Information:</strong> Theme tokens map directly to reusable Angular UI primitives.
+            </div>
+            <div class="ui-alert ui-alert--success">
+              <strong>Success:</strong> Bulk account sync completed with no SLA breaches.
+            </div>
+            <div class="ui-alert ui-alert--warning">
+              <strong>Attention:</strong> Approval queue exceeded the target by 18 minutes.
+            </div>
+          </div>
+
+          <div class="progress-block">
+            <div class="progress-row">
+              <span>Quarterly migration</span>
+              <span>74%</span>
+            </div>
+            <div class="ui-progress">
+              <span class="ui-progress__value" style="width: 74%"></span>
+            </div>
+          </div>
+
+          <div class="avatar-row">
+            <span class="ui-avatar">AB</span>
+            <span class="ui-avatar ui-avatar--accent">MP</span>
+            <span class="ui-avatar ui-avatar--dark">CR</span>
+          </div>
+        </app-ds-showcase-panel>
+
+        <app-ds-showcase-panel eyebrow="State blocks" title="Loading, empty, and exception surfaces">
+          <div class="state-stack">
+            <div class="loading-card">
+              <span class="loading-card__pulse"></span>
+              <div>
+                <p class="loading-card__title">Syncing audit records</p>
+                <p class="body-md">Fetching the latest compliance events from the archive service.</p>
+              </div>
+            </div>
+
+            <div class="ui-alert ui-alert--warning">
+              <strong>Exception:</strong> Two automation jobs need token renewal before the next run.
+            </div>
+
+            <div class="empty-state empty-state--compact">
+              <div class="empty-state__icon">✓</div>
+              <p class="empty-state__title">No unresolved incidents</p>
+              <p class="empty-state__copy">Use compact empty states for dashboard cards and inbox modules.</p>
+            </div>
+          </div>
+        </app-ds-showcase-panel>
+      </div>
+    }
+
+    @case ('patterns') {
+      <div class="showcase-grid showcase-grid--3">
+        <app-ds-showcase-panel eyebrow="Template" title="Approval flow">
+          <div class="flow-steps">
+            <div class="flow-step is-active">1. Intake</div>
+            <div class="flow-step is-active">2. Validate</div>
+            <div class="flow-step">3. Approve</div>
+            <div class="flow-step">4. Archive</div>
+          </div>
+        </app-ds-showcase-panel>
+
+        <app-ds-showcase-panel eyebrow="Template" title="Command palette">
+          <div class="command-card">
+            <div class="command-card__input">Search actions, records, and workflows...</div>
+            <div class="command-card__result">Create escalation workspace</div>
+            <div class="command-card__result">Open approval backlog</div>
+            <div class="command-card__result">Inspect RBAC policy changes</div>
+          </div>
+        </app-ds-showcase-panel>
+
+        <app-ds-showcase-panel eyebrow="Template" title="Empty state">
+          <div class="empty-state">
+            <div class="empty-state__icon empty-state__icon--plus" aria-hidden="true"></div>
+            <p class="empty-state__title">No exceptions in this queue</p>
+            <p class="empty-state__copy">Use this pattern for zero states, onboarding prompts, and initial workspace setup.</p>
+          </div>
+        </app-ds-showcase-panel>
+      </div>
+
+      <div class="showcase-grid showcase-grid--2">
+        <app-ds-showcase-panel eyebrow="Widget" title="Recent decisions">
+          <app-ds-activity-feed [items]="activity" />
+        </app-ds-showcase-panel>
+
+        <app-ds-showcase-panel eyebrow="Widget" title="Review queue">
+          <div class="task-panel">
+            <p class="task-panel__title">Review queue</p>
+            <ul class="task-list">
+              <li>Validate dual approval rules for finance exports</li>
+              <li>Review inactive admin seat clean-up policy</li>
+              <li>Confirm retention labels for audit archive</li>
+            </ul>
+          </div>
+        </app-ds-showcase-panel>
+      </div>
+    }
+  }
+</div>

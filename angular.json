@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "demo": {
+    "angular-admin": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -24,9 +24,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "styles": ["src/styles.css"],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
@@ -64,10 +62,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "demo:build:production"
+              "buildTarget": "angular-admin:build:production"
             },
             "development": {
-              "buildTarget": "demo:build:development"
+              "buildTarget": "angular-admin:build:development"
             }
           },
           "defaultConfiguration": "development"

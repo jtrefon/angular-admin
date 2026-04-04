@@ -1,0 +1,32 @@
+<div class="chart-showcase">
+  <div class="chart-showcase__summary">
+    <div>
+      <p class="ui-label">{{ label() }}</p>
+      <p class="metric-value">{{ total() }}</p>
+    </div>
+    <div class="chart-ring">
+      <div class="chart-ring__inner">
+        <span>84%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-bars">
+    @for (point of series(); track point.label) {
+      <div class="chart-bars__item">
+        <div class="chart-bars__bar" [style.height.%]="barHeight(point.value)"></div>
+        <span class="chart-bars__label">{{ point.label }}</span>
+      </div>
+    }
+  </div>
+
+  <div class="chart-legend">
+    @for (point of series(); track point.label) {
+      <div class="chart-legend__item">
+        <span class="chart-legend__dot"></span>
+        <span>{{ point.label }}</span>
+        <strong>{{ point.value }}%</strong>
+      </div>
+    }
+  </div>
+</div>

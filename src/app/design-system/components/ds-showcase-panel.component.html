@@ -1,0 +1,18 @@
+<article class="ui-card ds-panel" [class.ui-card--dark]="tone() === 'dark'">
+  <div class="ds-panel__header">
+    <div>
+      @if (eyebrow()) {
+        <p class="eyebrow">{{ eyebrow() }}</p>
+      }
+      <h3 class="section-title" [class.section-title--light]="tone() === 'dark'">{{ title() }}</h3>
+    </div>
+
+    @if (description()) {
+      <p class="ds-panel__description">{{ description() }}</p>
+    }
+  </div>
+
+  <div class="ds-panel__body">
+    <ng-content />
+  </div>
+</article>

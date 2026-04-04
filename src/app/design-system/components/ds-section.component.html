@@ -1,0 +1,18 @@
+<section class="ds-section" [class.ds-section--compact]="compact()" [attr.id]="id() || null">
+  <header class="ds-section__header">
+    <div class="ds-section__copy">
+      @if (eyebrow()) {
+        <p class="eyebrow">{{ eyebrow() }}</p>
+      }
+      <h2 class="section-title">{{ title() }}</h2>
+    </div>
+
+    @if (description()) {
+      <p class="section-copy">{{ description() }}</p>
+    }
+  </header>
+
+  <div class="ds-section__body">
+    <ng-content />
+  </div>
+</section>
