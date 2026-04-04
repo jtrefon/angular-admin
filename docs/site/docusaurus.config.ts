@@ -10,6 +10,52 @@ const config: Config = {
   title: 'Angular Admin Framework',
   tagline: 'Agnostic Angular framework for internal products, admin panels, and backoffice UIs.',
   favicon: 'img/favicon.ico',
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'keywords',
+        content:
+          'Angular admin framework, Angular design system, backoffice UI, admin dashboard framework, internal tools UI, reusable Angular components',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        property: 'og:type',
+        content: 'website',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        property: 'og:site_name',
+        content: 'Angular Admin Framework',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'twitter:title',
+        content: 'Angular Admin Framework',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'twitter:description',
+        content:
+          'Reusable Angular framework for internal products, admin interfaces, documentation, and live demo delivery.',
+      },
+    },
+  ],
   future: {
     v4: true,
   },
@@ -41,6 +87,13 @@ const config: Config = {
 
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
+    metadata: [
+      {
+        name: 'description',
+        content:
+          'Reusable Angular framework for internal products, backoffice applications, admin interfaces, documentation, and live demo delivery.',
+      },
+    ],
     colorMode: {
       defaultMode: 'light',
       disableSwitch: false,
