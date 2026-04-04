@@ -339,6 +339,13 @@
   color: white;
 }
 
+.sectionDark h1,
+.sectionDark h2,
+.sectionDark h3,
+.sectionDark strong {
+  color: #f8fafc;
+}
+
 .sectionHeading {
   max-width: 720px;
   margin-bottom: 2rem;
@@ -404,6 +411,22 @@
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+}
+
+.sectionDark :global(.button--secondary) {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(255, 255, 255, 0.94);
+  color: #111827;
+}
+
+.sectionDark :global(.button--secondary:hover) {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #0f172a;
+}
+
+.sectionDark :global(.button--primary) {
+  box-shadow: 0 16px 36px rgba(28, 124, 84, 0.28);
 }
 
 .productHero {

@@ -96,7 +96,7 @@ const config: Config = {
     ],
     colorMode: {
       defaultMode: 'light',
-      disableSwitch: false,
+      disableSwitch: true,
       respectPrefersColorScheme: false,
     },
     navbar: {
@@ -154,7 +154,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Angular Admin Framework.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Jacek Trefon · <a href="https://www.trefon.com" target="_blank" rel="noopener noreferrer">www.trefon.com</a>`,
     },
     prism: {
       theme: prismThemes.github,
